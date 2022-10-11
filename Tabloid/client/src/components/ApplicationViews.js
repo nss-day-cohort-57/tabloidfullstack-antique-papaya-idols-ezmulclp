@@ -5,7 +5,9 @@ import Register from "./Register";
 import Hello from "./Hello";
 import { UserProfileList } from "./UserProfileList";
 
+
 export default function ApplicationViews({ isLoggedIn }) {
+
   return (
     <main>
       <Routes>
@@ -14,7 +16,9 @@ export default function ApplicationViews({ isLoggedIn }) {
             index
             element={isLoggedIn ? <Hello /> : <Navigate to="/login" />}
           />
-          <Route path="users" element={<UserProfileList />} />
+          <Route
+            index
+            path="users" element={isLoggedIn ? <UserProfileList /> : <Navigate to="/login" />} />
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
           <Route path="*" element={<p>Whoops, nothing here...</p>} />

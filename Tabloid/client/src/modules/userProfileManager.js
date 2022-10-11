@@ -14,7 +14,7 @@ export const getAllUsers = () => {
                 return resp.json();
             } else {
                 throw new Error(
-                    "An unknown error occured while trying to get quotes.",
+                    "An unknown error occured while trying to get userProfiles.",
                 );
             }
         });

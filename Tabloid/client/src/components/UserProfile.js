@@ -7,8 +7,8 @@ export const UserProfile = ({ userProfile }) => {
         <Card className="m-4">
             <CardBody>
                 <strong>Full Name: {userProfile.fullName}</strong>
-                <strong>Display Name: {userProfile.displayName}</strong>
-                <strong>User Type: {userProfile.userType.Name} </strong>
+                <p>Display Name: {userProfile.displayName}</p>
+                <p>User Type: {userProfile.userType.name} </p>
             </CardBody>
         </Card>
     );
