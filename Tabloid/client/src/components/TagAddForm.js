@@ -10,7 +10,7 @@ export default function TagAddForm() {
   const submitForm = (e) => {
     e.preventDefault();
     addTag({ name: tagText })
-      .then(() => navigate("/"))
+      .then(() => navigate("/tag"))
       .catch((err) => alert(`An error ocurred: ${err.message}`));
   };
 

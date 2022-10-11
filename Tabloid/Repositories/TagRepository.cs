@@ -39,7 +39,12 @@ namespace Tabloid.Repositories
                     var reader = cmd.ExecuteReader();
                     while (reader.Read())
                     {
-                     //   tags.Add(reader.GetOrdinal);
+                        Tag tag = new Tag()
+                        {
+                            Id = DbUtils.GetInt(reader, "Id"),
+                            Name = DbUtils.GetString(reader, "Name")
+                        };
+                        tags.Add(tag);
                     }
                     reader.Close();
 
