@@ -47,7 +47,8 @@ namespace Tabloid.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok(_userProfileRepository.GetAllUsers());
+                return Ok(_userProfileRepository.GetAllUsers());
         }
+
     }
 }
