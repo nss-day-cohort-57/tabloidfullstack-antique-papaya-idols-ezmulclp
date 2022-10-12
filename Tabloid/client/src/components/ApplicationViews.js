@@ -5,7 +5,9 @@ import Register from "./Register";
 import Hello from "./Hello";
 import PostAddForm from "./PostAddForm";
 import PostList from "./PostList";
+import TagList from "./TagList"
 
+import TagAddForm from "./TagAddForm";
 export default function ApplicationViews({ isLoggedIn }) {
   return (
     <main>
@@ -17,8 +19,12 @@ export default function ApplicationViews({ isLoggedIn }) {
           />
           <Route path="post" element={<PostList/>} />
           <Route path="post/add" element={<PostAddForm />} />
+          
+        
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
+          <Route path="tag" element={<TagList /> } />
+          <Route path="tag/add" element={<TagAddForm /> } />
           <Route path="*" element={<p>Whoops, nothing here...</p>} />
         </Route>
       </Routes>
