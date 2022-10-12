@@ -3,6 +3,8 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import Login from "./Login";
 import Register from "./Register";
 import Hello from "./Hello";
+import PostAddForm from "./PostAddForm";
+import PostList from "./PostList";
 import { UserProfileList } from "./UserProfileList";
 
 import TagList from "./TagList"
@@ -20,6 +22,10 @@ export default function ApplicationViews({ isLoggedIn }) {
             index
             element={isLoggedIn ? <Hello /> : <Navigate to="/login" />}
           />
+          <Route path="post" element={<PostList/>} />
+          <Route path="post/add" element={<PostAddForm />} />
+          
+        
           <Route
             index
             path="users" element={isLoggedIn ? <UserProfileList /> : <Navigate to="/login" />} />
@@ -35,3 +41,4 @@ export default function ApplicationViews({ isLoggedIn }) {
     </main>
   );
 };
+
