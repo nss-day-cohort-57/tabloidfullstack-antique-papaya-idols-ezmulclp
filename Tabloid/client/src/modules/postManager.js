@@ -32,11 +32,9 @@ export const addPost = (post) => {
         },
         body: JSON.stringify(post),
       }).then((resp) => {
-        if (resp.ok) {
-          return resp.json();
-        } else if (resp.status === 401) {
+       if (resp.status === 401) {
           throw new Error("Unauthorized");
-        } else {
+        } else if (!resp.ok) {
           throw new Error(
             "An unknown error occurred while trying to save a new post.",
           );

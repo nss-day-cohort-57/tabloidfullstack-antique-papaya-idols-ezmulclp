@@ -43,7 +43,7 @@ namespace Tabloid.Controllers
            
             _postRepository.AddPost(post);
 
-            return CreatedAtAction("Get", new { id = post.Id }, post);
+            return NoContent();
         }
 
         /*
