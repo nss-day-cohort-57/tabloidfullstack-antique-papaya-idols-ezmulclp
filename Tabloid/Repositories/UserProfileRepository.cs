@@ -49,32 +49,6 @@ namespace Tabloid.Repositories
             }
         }
 
-        public UserProfile GetUserProfileById(int id)
-        {
-            using (var conn = Connection)
-            {
-                conn.Open();
-                using (var cmd = conn.CreateCommand())
-                {
-                    cmd.CommandText = @"
-                                    SELECT up.Id, up.FirstName, up.LastName, up.ImageLocation, up.DisplayName,
-                                            up.Email, up.CreateDateTime, up.UserTypeId, ut.Name AS UserTypeName
-                                    FROM UserProfile up
-                                    LEFT JOIN UserType ut ON up.UserTypeId = ut.Id
-                                    WHERE up.Id = @id";
-
-                    DbUtils.AddParameter(cmd, "@id", id);
-
-                    UserProfile userProfile = null;
-                    var reader = cmd.ExecuteReader();
-                    if(reader.Read())
-                    {
-
-                    }
-                }
-            }
-        }
-
         public UserProfile GetByFirebaseUserId(string firebaseUserId)
         {
             using (var conn = Connection)

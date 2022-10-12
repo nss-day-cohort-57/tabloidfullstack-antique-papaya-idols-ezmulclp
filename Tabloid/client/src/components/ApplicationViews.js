@@ -8,6 +8,7 @@ import { UserProfileList } from "./UserProfileList";
 import TagList from "./TagList"
 
 import TagAddForm from "./TagAddForm";
+import { UserProfileDetails } from "./UserProfileDetails";
 export default function ApplicationViews({ isLoggedIn }) {
 
   return (
@@ -21,6 +22,8 @@ export default function ApplicationViews({ isLoggedIn }) {
           <Route
             index
             path="users" element={isLoggedIn ? <UserProfileList /> : <Navigate to="/login" />} />
+          <Route
+            path="users/:firebaseUserId" element={isLoggedIn ? <UserProfileDetails /> : <Navigate to="/login" />} />
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
           <Route path="tag" element={<TagList />} />
