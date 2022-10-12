@@ -1,4 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
+using System.Collections.Generic;
+using System.Security.Cryptography;
 using Tabloid.Models;
 using Tabloid.Utils;
 
@@ -7,6 +9,45 @@ namespace Tabloid.Repositories
     public class UserProfileRepository : BaseRepository, IUserProfileRepository
     {
         public UserProfileRepository(IConfiguration configuration) : base(configuration) { }
+
+        public List<UserProfile> GetAllUsers()
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"SELECT up.Id, up.FirstName, up.LastName, up.DisplayName,
+                                        up.UserTypeId, ut.Name AS UserTypeName
+                                        FROM UserProfile up
+                                        LEFT JOIN UserType ut ON up.UserTypeId = ut.Id
+                                        ORDER BY up.DisplayName";
+
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        List<UserProfile> userProfile = new List<UserProfile>();
+                        while(reader.Read())
+                        {
+                            UserProfile profile = new UserProfile
+                            {
+                                Id = reader.GetInt32(reader.GetOrdinal("Id")),
+                                FirstName = reader.GetString(reader.GetOrdinal("FirstName")),
+                                LastName = reader.GetString(reader.GetOrdinal("LastName")),
+                                DisplayName = reader.GetString(reader.GetOrdinal("DisplayName")),
+                                UserTypeId = reader.GetInt32(reader.GetOrdinal("UserTypeId")),
+                                UserType = new UserType()
+                                {
+                                    Name = reader.GetString(reader.GetOrdinal("UserTypeName")),
+                                }
+                            };
+
+                            userProfile.Add(profile);
+                        }
+                        return userProfile;
+                    }
+                }
+            }
+        }
 
         public UserProfile GetByFirebaseUserId(string firebaseUserId)
         {
@@ -95,5 +136,9 @@ namespace Tabloid.Repositories
             _context.SaveChanges();
         }
         */
+
+
+
+        
     }
 }
