@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { getAllCategories } from "../modules/categoryManager";
 
 export default function CategoryList() {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
@@ -19,12 +19,12 @@ export default function CategoryList() {
   }
   return (
     <>
-    <Button onClick={handleClick}>Create Category</Button>
-    <section>
-      {categories.map((q) => (
-        <Category key={q.id} category={q} />
-      ))}
-    </section>
+      <Button onClick={handleClick}>Create Category</Button>
+      <section>
+        {categories.map((q) => (
+          <Category key={q.id} category={q} />
+        ))}
+      </section>
     </>
   );
 }
