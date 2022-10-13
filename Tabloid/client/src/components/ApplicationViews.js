@@ -12,6 +12,7 @@ import TagAddForm from "./TagAddForm";
 import { UserProfileDetails } from "./UserProfileDetails";
 import CategoryList from "./CategoryList"
 import CategoryAddForm from "./CategoryAddForm";
+import { CategoryEdit } from "./CategoryEdit";
 
 export default function ApplicationViews({ isLoggedIn, isAdmin }) {
 
@@ -38,6 +39,7 @@ export default function ApplicationViews({ isLoggedIn, isAdmin }) {
           <Route path="tag/add" element={<TagAddForm />} />
           <Route path="category" element={<CategoryList />} />
           <Route path="category/add" element={<CategoryAddForm />} />
+          <Route path="category/edit/:categoryId" element={<CategoryEdit />} />
           <Route path="*" element={<p>Whoops, nothing here...</p>} />
         </Route>
       </Routes>
