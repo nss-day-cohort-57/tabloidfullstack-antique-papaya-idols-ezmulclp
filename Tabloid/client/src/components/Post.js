@@ -4,11 +4,10 @@ import { Card, CardBody } from "reactstrap";
 const Post = ({ post }) => {
   return (
     <Card >
-      <p className="text-left px-2">Posted by: {post.userProfileId}</p>
+      <p className="text-left px-2">Posted by: {post.userProfile.displayName}</p>
       <CardBody>
         <strong>{post.title}</strong>
-        <p>{post.content}</p>
-        <p>{post.categoryId}</p>
+        <p>{post.category.name}</p>
       </CardBody>
     </Card>
   );

@@ -32,7 +32,7 @@ export default function Header({ isLoggedIn, isAdmin }) {
               </NavItem>
               <NavItem>
                 <NavLink tag={RRNavLink} to="/post">Posts</NavLink>
-                <NavLink tag={RRNavLink} to="/post/add">New Post</NavLink>
+  
                 
               </NavItem>
               
