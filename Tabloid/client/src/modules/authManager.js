@@ -12,6 +12,16 @@ const _doesUserExist = (firebaseUserId) => {
       }
     }).then(resp => resp.ok));
 };
+export const isUserAdmin = () => {
+ return getToken().then((token) => 
+  fetch(`${_apiUrl}/IsUserAdmin`, {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  }).then(resp => resp.json())
+  )}
+  
 
 const _saveUser = (userProfile) => {
   return getToken().then((token) =>
@@ -41,6 +51,7 @@ export const login = (email, pw) => {
 
         throw new Error("Something's wrong. The user exists in firebase, but not in the application database.");
       }
+      
     }).catch(err => {
       console.error(err);
       throw err;
@@ -65,5 +76,6 @@ export const register = (userProfile, password) => {
 export const onLoginStatusChange = (onLoginStatusChangeHandler) => {
   firebase.auth().onAuthStateChanged((user) => {
     onLoginStatusChangeHandler(!!user);
-  });
+  })
+  
 };

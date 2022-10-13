@@ -49,6 +49,7 @@ namespace Tabloid.Repositories
             }
         }
 
+
         public UserProfile GetByFirebaseUserId(string firebaseUserId)
         {
             using (var conn = Connection)

@@ -10,7 +10,7 @@ import { UserProfileList } from "./UserProfileList";
 import TagList from "./TagList"
 
 import TagAddForm from "./TagAddForm";
-export default function ApplicationViews({ isLoggedIn }) {
+export default function ApplicationViews({ isLoggedIn, isAdmin }) {
 
   return (
     <main>
