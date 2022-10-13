@@ -50,5 +50,6 @@ namespace Tabloid.Controllers
                 return Ok(_userProfileRepository.GetAllUsers());
         }
 
+
     }
 }

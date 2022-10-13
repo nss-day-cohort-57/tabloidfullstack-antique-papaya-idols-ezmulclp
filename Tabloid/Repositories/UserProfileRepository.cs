@@ -17,8 +17,8 @@ namespace Tabloid.Repositories
                 conn.Open();
                 using (var cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = @"SELECT up.Id, up.FirstName, up.LastName, up.DisplayName,
-                                        up.UserTypeId, ut.Name AS UserTypeName
+                    cmd.CommandText = @"SELECT up.Id, up.FirebaseUserId, up.FirstName, up.LastName, up.DisplayName, up.Email,
+                                        up.UserTypeId, up.ImageLocation, up.CreateDateTime, ut.Name AS UserTypeName
                                         FROM UserProfile up
                                         LEFT JOIN UserType ut ON up.UserTypeId = ut.Id
                                         ORDER BY up.DisplayName";
@@ -30,14 +30,19 @@ namespace Tabloid.Repositories
                         {
                             UserProfile profile = new UserProfile
                             {
-                                Id = reader.GetInt32(reader.GetOrdinal("Id")),
-                                FirstName = reader.GetString(reader.GetOrdinal("FirstName")),
-                                LastName = reader.GetString(reader.GetOrdinal("LastName")),
-                                DisplayName = reader.GetString(reader.GetOrdinal("DisplayName")),
-                                UserTypeId = reader.GetInt32(reader.GetOrdinal("UserTypeId")),
+                                Id = DbUtils.GetInt(reader, "Id"),
+                                FirebaseUserId = DbUtils.GetString(reader, "FirebaseUserId"),
+                                FirstName = DbUtils.GetString(reader, "FirstName"),
+                                LastName = DbUtils.GetString(reader, "LastName"),
+                                DisplayName = DbUtils.GetString(reader, "DisplayName"),
+                                Email = DbUtils.GetString(reader, "Email"),
+                                CreateDateTime = DbUtils.GetDateTime(reader, "CreateDateTime"),
+                                ImageLocation = DbUtils.GetString(reader, "ImageLocation"),
+                                UserTypeId = DbUtils.GetInt(reader, "UserTypeId"),
                                 UserType = new UserType()
                                 {
-                                    Name = reader.GetString(reader.GetOrdinal("UserTypeName")),
+                                    Id = DbUtils.GetInt(reader, "UserTypeId"),
+                                    Name = DbUtils.GetString(reader, "UserTypeName"),
                                 }
                             };
 
@@ -62,7 +67,7 @@ namespace Tabloid.Repositories
                                ut.Name AS UserTypeName
                           FROM UserProfile up
                                LEFT JOIN UserType ut on up.UserTypeId = ut.Id
-                         WHERE FirebaseUserId = @FirebaseuserId";
+                         WHERE up.FirebaseUserId = @FirebaseuserId";
 
                     DbUtils.AddParameter(cmd, "@FirebaseUserId", firebaseUserId);
 

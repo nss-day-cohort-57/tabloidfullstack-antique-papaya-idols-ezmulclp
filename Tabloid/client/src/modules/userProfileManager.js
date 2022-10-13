@@ -1,3 +1,4 @@
+
 import { getToken } from "./authManager";
 
 const apiUrl = "/api/userProfile";
@@ -19,4 +20,9 @@ export const getAllUsers = () => {
             }
         });
     });
+};
+
+export const getUserProfileById = (firebaseUserId) => {
+
+    return fetch(apiUrl + `/${firebaseUserId}`).then((res) => res.json())
 };
