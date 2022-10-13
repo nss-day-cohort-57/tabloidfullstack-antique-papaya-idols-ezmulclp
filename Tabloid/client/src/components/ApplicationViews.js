@@ -13,7 +13,7 @@ import { UserProfileDetails } from "./UserProfileDetails";
 import CategoryList from "./CategoryList"
 import CategoryAddForm from "./CategoryAddForm";
 
-export default function ApplicationViews({ isLoggedIn }) {
+export default function ApplicationViews({ isLoggedIn, isAdmin }) {
 
   return (
     <main>

@@ -11,7 +11,7 @@ import {
 } from 'reactstrap';
 import { logout } from '../modules/authManager';
 
-export default function Header({ isLoggedIn }) {
+export default function Header({ isLoggedIn, isAdmin }) {
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
 
@@ -24,32 +24,39 @@ export default function Header({ isLoggedIn }) {
           <Nav className="mr-auto" navbar>
             { /* When isLoggedIn === true, we will render the Home link */}
             {isLoggedIn &&
+            <>
+              <NavItem>
+                <NavLink tag={RRNavLink} to="/">
+                  Home
+                </NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink tag={RRNavLink} to="/post">Posts</NavLink>
+                <NavLink tag={RRNavLink} to="/post/add">New Post</NavLink>
+                
+              </NavItem>
+              
+            </>
+            }
+          </Nav>
+          <Nav navbar>
+            {isLoggedIn && isAdmin &&
               <>
                 <NavItem>
-                  <NavLink tag={RRNavLink} to="/">
-                    Home
-                  </NavLink>
+                  <NavLink tag={RRNavLink} to="users">UserProfiles</NavLink>
                 </NavItem>
                 <NavItem>
-                  <NavLink tag={RRNavLink} to="/post">Posts</NavLink>
-                  <NavLink tag={RRNavLink} to="/post/add">New Post</NavLink>
+                <NavLink tag={RRNavLink} to="/category">
+                  Categories
+                </NavLink>
+              </NavItem>
+              <NavItem>
                   <NavLink tag={RRNavLink} to="/tag">
                     Tags
                   </NavLink>
                 </NavItem>
-                <NavItem>
-                  <NavLink tag={RRNavLink} to="/category">
-                    Categories
-                  </NavLink>
-                </NavItem>
               </>
-            }
-          </Nav>
-          <Nav navbar>
-            {isLoggedIn &&
-              <NavItem>
-                <NavLink tag={RRNavLink} to="users">UserProfiles</NavLink>
-              </NavItem>}
+                }
           </Nav>
           <Nav navbar>
             {isLoggedIn &&

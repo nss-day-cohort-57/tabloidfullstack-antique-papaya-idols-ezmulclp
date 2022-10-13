@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Security.Claims;
 using Tabloid.Models;
 using Tabloid.Repositories;
 
@@ -21,6 +22,13 @@ namespace Tabloid.Controllers
             return Ok(_userProfileRepository.GetByFirebaseUserId(firebaseUserId));
         }
 
+        [HttpGet("IsUserAdmin")]
+        public IActionResult IsUserAdmin()
+        {
+            var userProfile = GetCurrentUserProfile();
+
+            return userProfile.UserTypeId == 1 ? Ok(true) : Ok(false);
+        }
         [HttpGet("DoesUserExist/{firebaseUserId}")]
         public IActionResult DoesUserExist(string firebaseUserId)
         {
@@ -49,7 +57,10 @@ namespace Tabloid.Controllers
         {
                 return Ok(_userProfileRepository.GetAllUsers());
         }
-
-
+        private UserProfile GetCurrentUserProfile()
+        {
+            var firebaseUserId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            return _userProfileRepository.GetByFirebaseUserId(firebaseUserId);
+        }
     }
 }
