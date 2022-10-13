@@ -26,13 +26,16 @@ export default function Header({ isLoggedIn, isAdmin }) {
             {isLoggedIn &&
             <>
               <NavItem>
-                <NavLink tag={RRNavLink} to="/">Home</NavLink>
+                <NavLink tag={RRNavLink} to="/">
+                  Home
+                </NavLink>
               </NavItem>
               <NavItem>
                 <NavLink tag={RRNavLink} to="/post">Posts</NavLink>
                 <NavLink tag={RRNavLink} to="/post/add">New Post</NavLink>
                 
               </NavItem>
+              
             </>
             }
           </Nav>
@@ -42,7 +45,11 @@ export default function Header({ isLoggedIn, isAdmin }) {
                 <NavItem>
                   <NavLink tag={RRNavLink} to="users">UserProfiles</NavLink>
                 </NavItem>
-                
+                <NavItem>
+                <NavLink tag={RRNavLink} to="/category">
+                  Categories
+                </NavLink>
+              </NavItem>
               </>
                 }
           </Nav>

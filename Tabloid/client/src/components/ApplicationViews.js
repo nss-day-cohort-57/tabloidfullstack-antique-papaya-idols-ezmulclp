@@ -8,8 +8,10 @@ import PostList from "./PostList";
 import { UserProfileList } from "./UserProfileList";
 
 import TagList from "./TagList"
-
 import TagAddForm from "./TagAddForm";
+import CategoryList from "./CategoryList"
+import CategoryAddForm from "./CategoryAddForm";
+
 export default function ApplicationViews({ isLoggedIn, isAdmin }) {
 
   return (
@@ -31,6 +33,8 @@ export default function ApplicationViews({ isLoggedIn, isAdmin }) {
           <Route path="register" element={<Register />} />
           <Route path="tag" element={<TagList />} />
           <Route path="tag/add" element={<TagAddForm />} />
+          <Route path="category" element={<CategoryList />} />
+          <Route path="category/add" element={<CategoryAddForm />} />
           <Route path="*" element={<p>Whoops, nothing here...</p>} />
         </Route>
       </Routes>
