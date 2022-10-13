@@ -9,6 +9,7 @@ import { UserProfileList } from "./UserProfileList";
 
 import TagList from "./TagList"
 import TagAddForm from "./TagAddForm";
+import { UserProfileDetails } from "./UserProfileDetails";
 import CategoryList from "./CategoryList"
 import CategoryAddForm from "./CategoryAddForm";
 
@@ -22,13 +23,15 @@ export default function ApplicationViews({ isLoggedIn, isAdmin }) {
             index
             element={isLoggedIn ? <Hello /> : <Navigate to="/login" />}
           />
-          <Route path="post" element={<PostList/>} />
+          <Route path="post" element={<PostList />} />
           <Route path="post/add" element={<PostAddForm />} />
-          
-        
+
+
           <Route
             index
             path="users" element={isLoggedIn ? <UserProfileList /> : <Navigate to="/login" />} />
+          <Route
+            path="users/:firebaseUserId" element={isLoggedIn ? <UserProfileDetails /> : <Navigate to="/login" />} />
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
           <Route path="tag" element={<TagList />} />
