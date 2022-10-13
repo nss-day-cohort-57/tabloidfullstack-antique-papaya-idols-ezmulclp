@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Security.Claims;
 using Tabloid.Models;
 using Tabloid.Repositories;
@@ -18,13 +20,15 @@ namespace Tabloid.Controllers
             _postRepository = postRepository;
         }
 
-        /*
+        
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok(_postRepository.GetAll());
+            List<Post> posts = _postRepository.GetAll().Where(p => p.IsApproved).OrderByDescending(p => p.PublishDateTime).ToList();
+            
+            return Ok(posts);
         }
-        */
+        
         
 
         [HttpPost]
