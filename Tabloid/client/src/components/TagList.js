@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { getAllTags } from "../modules/tagManager";
 
 export default function TagList() {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
   const [tags, setTags] = useState([]);
 
   useEffect(() => {
@@ -22,7 +22,7 @@ export default function TagList() {
     <Button onClick={handleClick}>Create Tag</Button>
     <section>
       {tags.map((q) => (
-        <Tag key={q.id} tag={q} />
+        <Tag key={q.id} tag={q} setTags={setTags}/>
       ))}
     </section>
     </>

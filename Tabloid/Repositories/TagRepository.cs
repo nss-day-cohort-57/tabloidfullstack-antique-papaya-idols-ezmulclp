@@ -8,6 +8,21 @@ namespace Tabloid.Repositories
     public class TagRepository : BaseRepository, ITagRepository
     {
         public TagRepository(IConfiguration configuration) : base(configuration) { }
+
+        public void Delete(int id)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = "DELETE FROM Tag WHERE Id = @id";
+                    cmd.Parameters.AddWithValue("@id", id);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
         public void Add(Tag tag)
         {
             using (var conn = Connection)
