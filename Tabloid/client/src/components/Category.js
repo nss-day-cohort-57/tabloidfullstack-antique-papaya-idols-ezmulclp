@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Card, CardBody, Button, Modal, ModalBody, ModalFooter, ModalHeader } from "reactstrap";
 import { Link } from "react-router-dom";
 import { deleteCategory, getAllCategories } from "../modules/categoryManager";
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -10,9 +11,11 @@ export default function Category({ category }) {
     const [modal, setModal] = useState(false);
     const toggle = () => setModal(!modal);
 
-    const deleteButton = (id) => {
-        deleteCategory(id).then(getAllCategories);
+    const deleteButton = (id, nav) => {
+        deleteCategory(id).then(() => nav(0));
     }
+
+    const navigate = useNavigate();
 
     return (
         <Card className="m-4">
@@ -40,7 +43,7 @@ export default function Category({ category }) {
                         <Button color="secondary" onClick={toggle}>
                             CANCEL
                         </Button>
-                        <Button color="secondary" onClick={() => { deleteButton(category.id) }}>
+                        <Button color="secondary" onClick={() => { deleteButton(category.id, navigate) }}>
                             CONFIRM
                         </Button>
                     </ModalFooter>
