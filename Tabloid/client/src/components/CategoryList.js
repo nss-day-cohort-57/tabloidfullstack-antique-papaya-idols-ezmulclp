@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Category from "./Category";
-import { Button, Form, FormGroup, Label, Input } from "reactstrap";
+import { Button } from "reactstrap";
 import { useNavigate } from "react-router-dom";
 import { getAllCategories } from "../modules/categoryManager";
 
